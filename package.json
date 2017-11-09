@@ -1,0 +1,25 @@
+{
+  "name": "mnw-mail-template",
+  "version": "1.0.0",
+  "description": "Universal mail template for apps used in museum. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nationalmuseum/mnw-mail-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nationalmuseum/mnw-mail-template/issues"
+  },
+  "homepage": "https://github.com/nationalmuseum/mnw-mail-template#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-minify-html": "^3.0.0",
+    "grunt-inline": "^0.3.6"
+  }
+}
