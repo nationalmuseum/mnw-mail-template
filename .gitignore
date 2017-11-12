@@ -25,3 +25,7 @@ node_modules
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Temp files #
+######################
+.sass-cache/

@@ -18,4 +18,13 @@ npm install
 ```
 Edit *src* files (scss and index.html) and run grunt in root directory. Check *pub* directory for generated template.
 
+```
+grunt
+```
+
 That's all! Enjoy.
+
+## Todo
+- create template with example content
+- create template sections for different types of content
+- add subtemplate support
