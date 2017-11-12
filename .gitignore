@@ -1,5 +1,6 @@
 # Compiled project
 public/
+pub/
 
 # Node
 node_modules

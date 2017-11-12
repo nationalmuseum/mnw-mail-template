@@ -10,7 +10,8 @@ module.exports = function (grunt) {
         /* Minify html */
         minifyHtml: {
             options: {
-                cdata: true
+                cdata: true,
+                conditionals: true
             },
             dist: {
                 files: {
@@ -19,16 +20,37 @@ module.exports = function (grunt) {
             }
         },
 
+        /* Include css file inside html */
         inline: {
             dist: {
                 src: 'src/index.html',
                 dest: 'pub/index.html'
             }
+        },
+
+        /* Sass */
+        sass: {
+            dist: {
+                options: {
+                    style: 'compressed', 
+                    sourcemap: 'none'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/scss',
+                    src: ['**/*.scss'],
+                    dest: 'src/css',
+                    ext: '.css'
+                }]
+            }
         }
+
+
     });
 
     grunt.loadNpmTasks('grunt-minify-html');
     grunt.loadNpmTasks('grunt-inline');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('default', ['inline', 'minifyHtml']);
+    grunt.registerTask('default', ['sass', 'inline', 'minifyHtml']);
 };
