@@ -16,11 +16,20 @@ Git clone and Install dependencies:
 ```js
 npm install
 ```
-Edit *src* files (scss and index.html) and run grunt in root directory. Check *pub* directory for generated template.
+Edit *src* files (scss and mail.html), *config.json* and run grunt in root directory. Check *pub* directory for generated template.
 
 ```
 grunt
 ```
+
+Or if you want to generate local preview version:
+
+```
+grunt preview
+```
+It will use local image paths relative to *mail.html* file.
+
+**Warning!** Do not use preview files for production. SPAM filters may recognize your mailing as unwanted. 
 
 That's all! Enjoy.
 
