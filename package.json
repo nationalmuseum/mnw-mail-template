@@ -23,6 +23,7 @@
     "grunt-includes": "^1.0.0",
     "grunt-inline": "^0.3.6",
     "grunt-minify-html": "^3.0.0",
+    "grunt-nodemailer": "^1.1.0",
     "grunt-replace": "^1.0.1"
   }
 }

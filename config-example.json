@@ -1,0 +1,13 @@
+{
+    "imgUrl":       "http://www.mnw.art.pl/ex/mailing/",
+    "previewUrl":   "assets/",
+    "title":        "E-mail template generator",
+    "fontUrl":      "https://fonts.googleapis.com/css?family=Slabo+27px&amp;subset=latin-ext",
+
+    "host":         "smtp.example.com",
+    "port":         25,
+    "security":     "tls",
+    "username":     "login@mail.com",
+    "password":     "Password",
+    "to":           "me@mail.com"
+}
