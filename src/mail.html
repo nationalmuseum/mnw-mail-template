@@ -1,71 +1,136 @@
-<!-- ***************************************************
-********************************************************
-
-HOW TO USE: Use these code examples as a guideline for formatting your HTML email. You may want to create your own template based on these snippets or just pick and choose the ones that fix your specific rendering issue(s). There are two main areas in the template: 1. The header (head) area of the document. You will find global styles, where indicated, to move inline. 2. The body section contains more specific fixes and guidance to use where needed in your design.
-
-DO NOT COPY OVER COMMENTS AND INSTRUCTIONS WITH THE CODE to your message or risk spam box banishment :).
-
-It is important to note that sometimes the styles in the header area should not be or don't need to be brought inline. Those instances will be marked accordingly in the comments.
-
-********************************************************
-**************************************************** -->
-
-<!-- Using the xHTML doctype is a good practice when sending HTML email. While not the only doctype you can use, it seems to have the least inconsistencies. For more information on which one may work best for you, check out the resources below.
-
-UPDATED: Now using xHTML strict based on the fact that gmail and hotmail uses it.  Find out more about that, and another great boilerplate, here: http://www.emailology.org/#1
-
-More info/Reference on doctypes in email:
-Campaign Monitor - http://www.campaignmonitor.com/blog/post/3317/correct-doctype-to-use-in-html-email/
-Email on Acid - http://www.emailonacid.com/blog/details/C18/doctype_-_the_black_sheep_of_html_email_design
-
-
-HTML comments will be removed upon compilation. Fill free to comment your code. 
-
--->
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>@@{title}</title>
-	<link href="@@{fontUrl}" rel="stylesheet">
-	<link href="css/reset.css?__inline=true" rel="stylesheet" />
-	<link href="css/style.css?__inline=true" rel="stylesheet" />
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title>@@{title}</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
-	<!-- Targeting Windows Mobile -->
-	<!--[if IEMobile 7]>
-	<link href="css/windows-mobile.css?__inline=true" rel="stylesheet" />
-	<![endif]-->
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
 
-	<!-- ***********************************************
-	****************************************************
-	END MOBILE TARGETING
-	****************************************************
-	************************************************ -->
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
 
-	<!-- Target Outlook 2007 and 2010 -->
-	<!--[if gte mso 9]>
-	<link href="css/outlook.css?__inline=true" rel="stylesheet" />
-	<![endif]-->
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <link href='@@{fontUrl}' rel='stylesheet' type='text/css' />
+    <style>
+        * { font-family: @@{fontFamily}; }
+    </style>
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <link href="css/reset.css?__inline=true" rel="stylesheet" />
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <link href="css/style.css?__inline=true" rel="stylesheet" />
+    <!-- Progressive Enhancements : END -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
 </head>
-<body id="body_style">
-	<!-- Wrapper/Container Table: Use a wrapper table to control the width and the background color consistently of your email. Use this approach instead of setting attributes on the body tag. -->
-	<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#FFFFFF" id="backgroundTable">
-		<tr>
-			<td>
-				include "views/_header.html"
-			</td>
-		</tr>
-		<tr>
-			<td>
-				include "views/_hero.html"
-			</td>
-		</tr>
-	</table>
-	<!-- End of wrapper table -->
+<body width="100%" bgcolor="@@{bgColor}" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: @@{bgColor}; text-align: left;">
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            @@{description}
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+            2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+            Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+        -->
+        <div style="max-width: @@{width}px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="@@{width}" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+
+            <!-- Email Header : BEGIN -->
+            include "views/_header.html"
+            <!-- Email Header : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;" class="email-container">
+
+                <!-- Hero Image, Flush : BEGIN -->
+                include "views/_hero.html"
+                <!-- Hero Image, Flush : END -->
+
+                <!-- 1 Column Text + Button : BEGIN -->
+                include "views/_one_column_button.html"
+                <!-- 1 Column Text + Button : END -->
+
+                <!-- Background Image with Text : BEGIN -->
+                include "views/_bg_with_text.html"
+                <!-- Background Image with Text : END -->
+
+                <!-- 2 Even Columns : BEGIN -->
+                include "views/_two_columns.html"
+                <!-- 2 Even Columns : END -->
+
+                <!-- 3 Even Columns : BEGIN -->
+                include "views/_three_columns.html"
+                <!-- 3 Even Columns : END -->
+
+                <!-- Thumbnail Left, Text Right : BEGIN -->
+                include "views/_thumbnail_left.html"
+                <!-- Thumbnail Left, Text Right : END -->
+
+                <!-- Thumbnail Right, Text Left : BEGIN -->
+                include "views/_thumbnail_right.html"
+                <!-- Thumbnail Right, Text Left : END -->
+
+                <!-- Clear Spacer : BEGIN -->
+                include "views/_spacer.html"
+                <!-- Clear Spacer : END -->
+                
+                <!-- 1 Column Text : BEGIN -->
+                include "views/_one_column.html"
+                <!-- 1 Column Text : END -->
+                
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            include "views/_footer.html"
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+
+        <!-- Full Bleed Background Section : BEGIN -->
+        include "views/_full_bleed_bg.html"
+        <!-- Full Bleed Background Section : END -->
+
+    </center>
 </body>
 </html>

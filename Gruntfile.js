@@ -14,6 +14,9 @@ module.exports = function (grunt) {
         
         config: config,
 
+        /**
+         * Template patterns
+         */
         replacePatterns: [
             {
                 match: '{imgUrl}',
@@ -26,7 +29,47 @@ module.exports = function (grunt) {
             {
                 match: '{fontUrl}',
                 replacement: '<%= config.fontUrl %>'
-            }           
+            },
+            {
+                match: '{fontFamily}',
+                replacement: '<%= config.fontFamily %>'              
+            },
+            {
+                match: '{bgColor}',
+                replacement: '<%= config.bgColor %>'  
+            },
+            {
+                match: '{txtColor}',
+                replacement: '<%= config.txtColor %>'  
+            },
+            {
+                match: '{txtAlign}',
+                replacement: '<%= config.txtAlign %>'  
+            },
+            {
+                match: '{headingTxtColor}',
+                replacement: '<%= config.headingTxtColor %>'  
+            },
+            {
+                match: '{btnColor}',
+                replacement: '<%= config.btnColor %>'  
+            },
+            {
+                match: '{btnTxtColor}',
+                replacement: '<%= config.btnTxtColor %>'  
+            },
+            {
+                match: '{description}',
+                replacement: '<%= config.description %>'  
+            },
+            {
+                match: '{width}',
+                replacement: '<%= config.width %>'  
+            },
+            {
+                match: '{footerBgColor}',
+                replacement: '<%= config.footerBgColor %>'  
+            }                     
         ],
 
         /* Minify html */

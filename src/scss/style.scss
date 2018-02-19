@@ -1,48 +1,57 @@
-/**
+    /* What it does: Hover styles for buttons */
+    .button-td,
+    .button-a {
+        transition: all 100ms ease-in;
+    }
 
-		Yahoo Link color fix updated: Simply bring your link styling inline.
-		<a href="http://htmlemailboilerplate.com" target ="_blank" title="Styling Links" style="color: orange; text-decoration: none;">Coloring Links appropriately</a>
+    /**
+     * Button Hover color
+     */
+    .button-td:hover,
+    .button-a:hover {
+        background: #555555 !important;
+        border-color: #555555 !important;
+    }
 
-		Gmail/Hotmail image display fix: Gmail and Hotmail unwantedly adds in an extra space below images when using non IE browsers.  This can be especially painful when you putting images on top of each other or putting back together an image you spliced for formatting reasons.  Either way, you can add the 'image_fix' class to remove that space below the image.  Make sure to set alignment (don't use float) on your images if you are placing them inline with text.
-		<img class="image_fix" src="full path to image" alt="Your alt text" title="Your title text" width="x" height="x" />
+    /* Media Queries */
+    @media screen and (max-width: 480px) {
 
-		Step 2: Working with telephone numbers (including sms prompts).  Use the "mobile_link" class with a span tag to control what number links and what doesn't in mobile clients.
-		<span class="mobile_link">123-456-7890
-		
-		Outlook compatibility article:
-		https://msdn.microsoft.com/en-us/library/aa338201.aspx
-**/
+        /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+        .fluid {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
 
-$border-color: rgb(199, 199, 199);
+        /* What it does: Forces table cells into full-width rows. */
+        .stack-column,
+        .stack-column-center {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            direction: ltr !important;
+        }
+        /* And center justify these ones. */
+        .stack-column-center {
+            text-align: center !important;
+        }
 
-html {
-    width: 100%; 
-}
+        /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+        .center-on-narrow {
+            text-align: center !important;
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            float: none !important;
+        }
+        table.center-on-narrow {
+            display: inline-block !important;
+        }
 
-#body_style, 
-html {
-	margin: 0 0;
-	padding: 0 0;
-	font-family: 'Slabo 27px', serif;	
-	font-size: 16px;
-}
-
-table {
-	background-color: White;
-}
-
-/**
- * MNW
- */
-.mnw-heading {
-	border-bottom: solid 1px $border-color;
-
-	h1, h2 {
-		padding: 24px 0 8px 0;;
-	}
-}
-
-.mnw-content {
-	line-height: 220%;
-	padding: 16px 0;
-}
+        /* What it does: Adjust typography on small screens to improve readability */
+        .email-container p {
+            font-size: 17px !important;
+        }
+    }
