@@ -1,9 +1,9 @@
 # Mail template generator
-This package generates e-mail HTML based on src files (HTML template and SASS files).
+This package generates HTML markup for e-mail based on src files (HTML template and SASS files).
 
 It's using [Cerberus](https://github.com/TedGoas/Cerberus) for standarization.
 
-Ease cration of your e-mail templates! Because it's a hell on earth...
+You can ease cration of your e-mail templates this way because it's a hell on earth...
 
 ## Features
 - HTML compression
@@ -11,7 +11,8 @@ Ease cration of your e-mail templates! Because it's a hell on earth...
 - automatic inline css inclusion
 - only one file is generated (ideal solution for e-mail)
 - you can put HTML comments into template (they'll be removed)
-- send yourself a test mail with template instantly
+- send yourself a test mail with template instantly (PHP nedded)
+- configurable width, fonts and colors
 
 ## Usage
 Git clone and Install dependencies:
@@ -27,21 +28,28 @@ Edit *src* files (scss and mail.html), *config.json* and run grunt in root direc
 grunt
 ```
 
-Or if you want to generate local preview version:
+Or if you want to generate a local preview version:
 
 ```
 grunt preview
 ```
-It will use local image paths relative to *mail.html* file.
+
+It will generate *mail.html* in pub directory. 
+
+Paths to images will be relative to *mail.html* file.
+
+### How to edit?
+
+Use include in *mail.html* to add different views to your mail. Edit views if nedded.
 
 ## Send test mail with your template
-After filling *config.json* and generating of a template, you can send yourself a test mail with it. Please use *testmail.php* using PHP. It will output all debug data to the browser.
+After filling *config.json* and generating a template, you can send yourself a test mail with it. Please use *testmail.php* using PHP. It will output all debug data to the browser or console.
 
-**Warning!** Do not use preview files for production. SPAM filters may recognize your mailing as unwanted. 
+**Warning!** Do not use preview files for production. SPAM filters may recognize your mailing as unwanted! 
 
 That's all! Enjoy.
 
 ## Todo
-- create a template with example content
-- create template sections for different types of content
+- ~~create a template with example content~~
+- ~~create template sections for different types of content~~
 - ~~add subtemplate support~~

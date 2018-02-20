@@ -69,7 +69,12 @@ module.exports = function (grunt) {
             {
                 match: '{footerBgColor}',
                 replacement: '<%= config.footerBgColor %>'  
-            }                     
+            },
+            {
+                match: '{imgBgColor}',
+                replacement: '<%= config.imgBgColor %>'  
+            }        
+                       
         ],
 
         /* Minify html */
